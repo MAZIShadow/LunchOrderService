@@ -46,6 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IMeal.cs" />
+    <Compile Include="Interfaces\IMealAddOn.cs" />
+    <Compile Include="Entity\Meal.cs" />
+    <Compile Include="Entity\MealAddOn.cs" />
     <Compile Include="OrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
