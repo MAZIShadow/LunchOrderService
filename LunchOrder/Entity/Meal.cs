@@ -8,9 +8,36 @@ namespace LunchOrder.Entity
 {
     public class Meal : IMeal
     {
+        public Meal()
+        {
+            AddOns = new HashSet<IMeal>();
+        }
+
+        public Meal(string pMealName, decimal pPrice) : this(pMealName, pPrice, null)
+        {
+        }
+
+        public Meal(string pMealName, decimal pPrice, IMealGroup pMealGroup) : this()
+        {
+            this.MealName = pMealName;
+            this.MealPrice = pPrice;
+            this.MealGroup = pMealGroup;
+        }
+
         public long? Id { get; set; }
         public string MealName { get; set; }
         public decimal MealPrice { get; set; }
-        public HashSet<IMealAddOn> AddOns { get; set;}
+        public IMealGroup MealGroup { get; set; }
+        public HashSet<IMeal> AddOns { get; set; }
+
+        public decimal CalculateAddOnsPrice()
+        {
+            return AddOns.Sum(pAddOn => pAddOn.MealPrice);
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} [{1,00} zł]", MealName, MealPrice);
+        }
     }
 }

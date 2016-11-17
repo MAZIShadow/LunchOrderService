@@ -1,0 +1,9 @@
+c:\users\mazi_\documents\visual studio 2015\Projects\LunchOrderService\LunchOrder\bin\Debug\LunchOrder.exe.config
+C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\bin\Debug\LunchOrder.exe
+C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\bin\Debug\LunchOrder.pdb
+C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\obj\Debug\LunchOrder.csprojResolveAssemblyReference.cache
+C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\obj\Debug\LunchOrder.OrderForm.resources
+C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\obj\Debug\LunchOrder.Properties.Resources.resources
+C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\obj\Debug\LunchOrder.csproj.GenerateResource.Cache
+C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\obj\Debug\LunchOrder.exe
+C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\obj\Debug\LunchOrder.pdb
