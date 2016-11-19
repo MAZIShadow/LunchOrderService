@@ -98,5 +98,20 @@ namespace LunchOrder
 
             LoadMeals(mealGroup.Id.Value);
         }
+
+        private void uiBtnAddOns_Click(object sender, EventArgs e)
+        {
+            using (AddOnForm addOnForm = new AddOnForm())
+            {
+                if (addOnForm.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+
+                //todo: dodać dodatki
+
+                ReloadTree();
+            }
+        }
     }
 }

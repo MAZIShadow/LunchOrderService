@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.uiLstMeals = new System.Windows.Forms.ListBox();
+            this.uiCbGroups = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.uiBtnCancelOrder = new System.Windows.Forms.Button();
             this.uiLblPrice = new System.Windows.Forms.Label();
@@ -37,9 +40,7 @@
             this.uiTreeView = new System.Windows.Forms.TreeView();
             this.uiBtnAddMeal = new System.Windows.Forms.Button();
             this.uiBtnRemoveMeal = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.uiCbGroups = new System.Windows.Forms.ComboBox();
-            this.uiLstMeals = new System.Windows.Forms.ListBox();
+            this.uiBtnAddOns = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -57,8 +58,39 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Menu";
             // 
+            // uiLstMeals
+            // 
+            this.uiLstMeals.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.uiLstMeals.FormattingEnabled = true;
+            this.uiLstMeals.ItemHeight = 24;
+            this.uiLstMeals.Location = new System.Drawing.Point(9, 100);
+            this.uiLstMeals.Name = "uiLstMeals";
+            this.uiLstMeals.Size = new System.Drawing.Size(407, 340);
+            this.uiLstMeals.TabIndex = 2;
+            // 
+            // uiCbGroups
+            // 
+            this.uiCbGroups.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.uiCbGroups.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.uiCbGroups.FormattingEnabled = true;
+            this.uiCbGroups.Location = new System.Drawing.Point(9, 52);
+            this.uiCbGroups.Name = "uiCbGroups";
+            this.uiCbGroups.Size = new System.Drawing.Size(408, 32);
+            this.uiCbGroups.TabIndex = 1;
+            this.uiCbGroups.SelectedIndexChanged += new System.EventHandler(this.uiCbGroups_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 29);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(81, 20);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Kategoria:";
+            // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.uiBtnAddOns);
             this.groupBox2.Controls.Add(this.uiBtnCancelOrder);
             this.groupBox2.Controls.Add(this.uiLblPrice);
             this.groupBox2.Controls.Add(this.label1);
@@ -87,7 +119,7 @@
             // 
             this.uiLblPrice.AutoSize = true;
             this.uiLblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.uiLblPrice.Location = new System.Drawing.Point(86, 369);
+            this.uiLblPrice.Location = new System.Drawing.Point(90, 415);
             this.uiLblPrice.Name = "uiLblPrice";
             this.uiLblPrice.Size = new System.Drawing.Size(50, 25);
             this.uiLblPrice.TabIndex = 3;
@@ -97,7 +129,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(6, 369);
+            this.label1.Location = new System.Drawing.Point(10, 415);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 25);
             this.label1.TabIndex = 2;
@@ -106,7 +138,7 @@
             // uiBtnOrderDinner
             // 
             this.uiBtnOrderDinner.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.uiBtnOrderDinner.Location = new System.Drawing.Point(6, 411);
+            this.uiBtnOrderDinner.Location = new System.Drawing.Point(6, 467);
             this.uiBtnOrderDinner.Name = "uiBtnOrderDinner";
             this.uiBtnOrderDinner.Size = new System.Drawing.Size(431, 61);
             this.uiBtnOrderDinner.TabIndex = 1;
@@ -142,35 +174,15 @@
             this.uiBtnRemoveMeal.UseVisualStyleBackColor = true;
             this.uiBtnRemoveMeal.Click += new System.EventHandler(this.uiBtnRemoveMeal_Click);
             // 
-            // label2
+            // uiBtnAddOns
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 29);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 20);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Kategoria:";
-            // 
-            // uiCbGroups
-            // 
-            this.uiCbGroups.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.uiCbGroups.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.uiCbGroups.FormattingEnabled = true;
-            this.uiCbGroups.Location = new System.Drawing.Point(9, 52);
-            this.uiCbGroups.Name = "uiCbGroups";
-            this.uiCbGroups.Size = new System.Drawing.Size(408, 32);
-            this.uiCbGroups.TabIndex = 1;
-            this.uiCbGroups.SelectedIndexChanged += new System.EventHandler(this.uiCbGroups_SelectedIndexChanged);
-            // 
-            // uiLstMeals
-            // 
-            this.uiLstMeals.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.uiLstMeals.FormattingEnabled = true;
-            this.uiLstMeals.ItemHeight = 24;
-            this.uiLstMeals.Location = new System.Drawing.Point(9, 100);
-            this.uiLstMeals.Name = "uiLstMeals";
-            this.uiLstMeals.Size = new System.Drawing.Size(407, 340);
-            this.uiLstMeals.TabIndex = 2;
+            this.uiBtnAddOns.Location = new System.Drawing.Point(6, 355);
+            this.uiBtnAddOns.Name = "uiBtnAddOns";
+            this.uiBtnAddOns.Size = new System.Drawing.Size(103, 34);
+            this.uiBtnAddOns.TabIndex = 4;
+            this.uiBtnAddOns.Text = "Dodatki";
+            this.uiBtnAddOns.UseVisualStyleBackColor = true;
+            this.uiBtnAddOns.Click += new System.EventHandler(this.uiBtnAddOns_Click);
             // 
             // OrderForm
             // 
@@ -210,6 +222,7 @@
         private System.Windows.Forms.ComboBox uiCbGroups;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox uiLstMeals;
+        private System.Windows.Forms.Button uiBtnAddOns;
     }
 }
 

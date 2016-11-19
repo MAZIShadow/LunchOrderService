@@ -71,6 +71,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddOnForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddOnForm.Designer.cs">
+      <DependentUpon>AddOnForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DBContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -115,6 +121,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\MealGroupRepository.cs" />
     <Compile Include="Repositories\MealRepository.cs" />
+    <EmbeddedResource Include="AddOnForm.resx">
+      <DependentUpon>AddOnForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OrderForm.resx">
       <DependentUpon>OrderForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -134,7 +143,9 @@
     <None Include="DBContext.edmx.diagram">
       <DependentUpon>DBContext.edmx</DependentUpon>
     </None>
-    <None Include="dbmeals.sqlite" />
+    <None Include="dbmeals.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
