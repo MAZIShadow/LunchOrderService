@@ -8,9 +8,15 @@ namespace LunchOrder.Entity
 {
     public class MealGroup : IMealGroup
     {
-        public MealGroup()
+        public MealGroup(MEAL_GROUPS pMealGroups)
         {
-
+            Id = pMealGroups.ID <= 0 ? (long?)null : pMealGroups.ID;
+            GroupName = pMealGroups.NAME;
+            
+            if (pMealGroups.MEAL_GROUPS2 != null)
+            {
+                ParentMealGroup = new MealGroup(pMealGroups.MEAL_GROUPS2);
+            }
         }
 
         public MealGroup(long? pId, string pGroupName, IMealGroup pParentMealGroup)

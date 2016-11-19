@@ -7,3 +7,11 @@ C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrde
 C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\obj\Debug\LunchOrder.csproj.GenerateResource.Cache
 C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\obj\Debug\LunchOrder.exe
 C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\obj\Debug\LunchOrder.pdb
+C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\bin\Debug\EntityFramework.dll
+C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\bin\Debug\System.Data.SQLite.dll
+C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\bin\Debug\EntityFramework.xml
+C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\bin\Debug\System.Data.SQLite.xml

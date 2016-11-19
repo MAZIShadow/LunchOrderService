@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LunchOrder.DBContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="MEAL_GROUPS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FK_MEAL_GROUP" Type="Int64" />
+    <NavigationProperty Name="MEAL_GROUPS1" Relationship="Self.FK_MEAL_GROUPS_0_0" FromRole="MEAL_GROUPS" ToRole="MEAL_GROUPS1" />
+    <NavigationProperty Name="MEAL_GROUPS2" Relationship="Self.FK_MEAL_GROUPS_0_0" FromRole="MEAL_GROUPS1" ToRole="MEAL_GROUPS" />
+    <NavigationProperty Name="MEALS" Relationship="Self.FK_MEALS_0_0" FromRole="MEAL_GROUPS" ToRole="MEALS" />
+  </EntityType>
+  <EntityType Name="MEAL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PRICE" Type="Double" Nullable="false" />
+    <Property Name="FK_MEAL_GROUP" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="MEAL_GROUPS" Relationship="Self.FK_MEALS_0_0" FromRole="MEALS" ToRole="MEAL_GROUPS" />
+  </EntityType>
+  <EntityType Name="ORDER_ITEMS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PRICE" Type="Double" Nullable="false" />
+    <Property Name="FK_ORDER_ITEMS" Type="Int64" />
+    <Property Name="FK_ORDERS" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="ORDER" Relationship="Self.FK_ORDER_ITEMS_0_0" FromRole="ORDER_ITEMS" ToRole="ORDERS" />
+    <NavigationProperty Name="ORDER_ITEMS1" Relationship="Self.FK_ORDER_ITEMS_1_0" FromRole="ORDER_ITEMS" ToRole="ORDER_ITEMS1" />
+    <NavigationProperty Name="ORDER_ITEMS2" Relationship="Self.FK_ORDER_ITEMS_1_0" FromRole="ORDER_ITEMS1" ToRole="ORDER_ITEMS" />
+  </EntityType>
+  <EntityType Name="ORDER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ORDER_DATE" Type="DateTime" Nullable="false" />
+    <Property Name="DELIVERY_EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="COMMENT" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ORDER_ITEMS" Relationship="Self.FK_ORDER_ITEMS_0_0" FromRole="ORDERS" ToRole="ORDER_ITEMS" />
+  </EntityType>
+  <Association Name="FK_MEAL_GROUPS_0_0">
+    <End Role="MEAL_GROUPS" Type="Self.MEAL_GROUPS" Multiplicity="0..1" />
+    <End Role="MEAL_GROUPS1" Type="Self.MEAL_GROUPS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MEAL_GROUPS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MEAL_GROUPS1">
+        <PropertyRef Name="FK_MEAL_GROUP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MEALS_0_0">
+    <End Role="MEAL_GROUPS" Type="Self.MEAL_GROUPS" Multiplicity="1" />
+    <End Role="MEALS" Type="Self.MEAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MEAL_GROUPS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MEALS">
+        <PropertyRef Name="FK_MEAL_GROUP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDER_ITEMS_0_0">
+    <End Role="ORDERS" Type="Self.ORDER" Multiplicity="1" />
+    <End Role="ORDER_ITEMS" Type="Self.ORDER_ITEMS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDERS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ORDER_ITEMS">
+        <PropertyRef Name="FK_ORDERS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDER_ITEMS_1_0">
+    <End Role="ORDER_ITEMS" Type="Self.ORDER_ITEMS" Multiplicity="0..1" />
+    <End Role="ORDER_ITEMS1" Type="Self.ORDER_ITEMS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDER_ITEMS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ORDER_ITEMS1">
+        <PropertyRef Name="FK_ORDER_ITEMS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbmealsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="MEAL_GROUPS" EntityType="Self.MEAL_GROUPS" />
+    <EntitySet Name="MEALS" EntityType="Self.MEAL" />
+    <EntitySet Name="ORDER_ITEMS" EntityType="Self.ORDER_ITEMS" />
+    <EntitySet Name="ORDERS" EntityType="Self.ORDER" />
+    <AssociationSet Name="FK_MEAL_GROUPS_0_0" Association="Self.FK_MEAL_GROUPS_0_0">
+      <End Role="MEAL_GROUPS" EntitySet="MEAL_GROUPS" />
+      <End Role="MEAL_GROUPS1" EntitySet="MEAL_GROUPS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MEALS_0_0" Association="Self.FK_MEALS_0_0">
+      <End Role="MEAL_GROUPS" EntitySet="MEAL_GROUPS" />
+      <End Role="MEALS" EntitySet="MEALS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDER_ITEMS_0_0" Association="Self.FK_ORDER_ITEMS_0_0">
+      <End Role="ORDERS" EntitySet="ORDERS" />
+      <End Role="ORDER_ITEMS" EntitySet="ORDER_ITEMS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDER_ITEMS_1_0" Association="Self.FK_ORDER_ITEMS_1_0">
+      <End Role="ORDER_ITEMS" EntitySet="ORDER_ITEMS" />
+      <End Role="ORDER_ITEMS1" EntitySet="ORDER_ITEMS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

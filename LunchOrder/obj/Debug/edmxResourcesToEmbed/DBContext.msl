@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LunchOrderDBContextStoreContainer" CdmEntityContainer="dbmealsEntities">
+    <EntitySetMapping Name="MEAL_GROUPS">
+      <EntityTypeMapping TypeName="LunchOrder.DBContext.MEAL_GROUPS">
+        <MappingFragment StoreEntitySet="MEAL_GROUPS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="FK_MEAL_GROUP" ColumnName="FK_MEAL_GROUP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MEALS">
+      <EntityTypeMapping TypeName="LunchOrder.DBContext.MEAL">
+        <MappingFragment StoreEntitySet="MEALS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="FK_MEAL_GROUP" ColumnName="FK_MEAL_GROUP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDER_ITEMS">
+      <EntityTypeMapping TypeName="LunchOrder.DBContext.ORDER_ITEMS">
+        <MappingFragment StoreEntitySet="ORDER_ITEMS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="FK_ORDER_ITEMS" ColumnName="FK_ORDER_ITEMS" />
+          <ScalarProperty Name="FK_ORDERS" ColumnName="FK_ORDERS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDERS">
+      <EntityTypeMapping TypeName="LunchOrder.DBContext.ORDER">
+        <MappingFragment StoreEntitySet="ORDERS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ORDER_DATE" ColumnName="ORDER_DATE" />
+          <ScalarProperty Name="DELIVERY_EMAIL" ColumnName="DELIVERY_EMAIL" />
+          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -10,38 +10,46 @@ namespace LunchOrder.Repositories
 {
     public class MealGroupRepository
     {
-        private static List<IMealGroup> mainGroups;
-
-        static MealGroupRepository()
-        {
-            MealGroup pizzasGroup = new MealGroup(1, "Pizza", null);
-            MealGroup pizzaAddonsGroup = new MealGroup(2, "Dodatki do pizzy", pizzasGroup);
-            MealGroup mainMealsGroup = new MealGroup(3, "Dania główne", null);
-            MealGroup mainMealAddonsGroup = new MealGroup(4, "Dodatki do dań głównych", mainMealsGroup);
-            MealGroup soupsGroup = new MealGroup(5, "Zupy", null);
-            MealGroup drinksGroup = new MealGroup(6, "Napoje", null);
-
-            mainGroups = new List<IMealGroup> { pizzasGroup, pizzaAddonsGroup, mainMealsGroup, mainMealAddonsGroup, soupsGroup, drinksGroup };
-        }
-
-        public List<IMealGroup> FindAllMealGroups()
-        {
-            return mainGroups;
-        }
-
         public List<IMealGroup> FindAllMainMealGroups()
         {
-            return FindAllMealGroups().Where(pMealGroup => pMealGroup.ParentMealGroup == null).ToList();
+            using (dbmealsEntities context = new dbmealsEntities())
+            {
+                List<MEAL_GROUPS> mealGroupsDb = context.MEAL_GROUPS.Where(pMealGroup => pMealGroup.MEAL_GROUPS2 == null).ToList();
+                List<IMealGroup> mealGroups = new List<IMealGroup>();
+
+                foreach(MEAL_GROUPS mealGroupDb in mealGroupsDb)
+                {
+                    mealGroups.Add(new MealGroup(mealGroupDb));
+                }
+
+                return mealGroups;
+            }
         }
 
         public List<IMealGroup> FindSubGroupByMainGroupName(string pMealGroupName)
         {
-            return FindAllMealGroups().Where(pGroup => pGroup.GroupName == pMealGroupName).Select(pGroup => pGroup.ParentMealGroup).ToList();
+            using (dbmealsEntities context = new dbmealsEntities())
+            {
+                List<MEAL_GROUPS> mealGroupsDb = context.MEAL_GROUPS.Where(pMealGroup => pMealGroup.NAME == pMealGroupName).ToList();
+                List<IMealGroup> mealGroups = new List<IMealGroup>();
+
+                foreach (MEAL_GROUPS mealGroupDb in mealGroupsDb)
+                {
+                    mealGroups.Add(new MealGroup(mealGroupDb));
+                }
+
+                return mealGroups;
+            }
         }
 
         public IMealGroup FindGroupById(long pId)
         {
-            return FindAllMealGroups().FirstOrDefault(pGroup => pGroup.Id == pId);
+            using (dbmealsEntities context = new dbmealsEntities())
+            {
+                MEAL_GROUPS mealGroupDb = context.MEAL_GROUPS.FirstOrDefault(pMealGroup => pMealGroup.ID == pId);
+
+                return mealGroupDb == null ? null : new MealGroup(mealGroupDb);
+            }
         }
     }
 }

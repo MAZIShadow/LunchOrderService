@@ -8,6 +8,18 @@ namespace LunchOrder.Entity
 {
     public class Meal : IMeal
     {
+        public Meal(MEAL pMealDb) : this()
+        {
+            Id = pMealDb.ID <= 0 ? (long?)null : pMealDb.ID;
+            MealName = pMealDb.NAME;
+            MealPrice = (decimal)pMealDb.PRICE;
+
+            if (pMealDb.MEAL_GROUPS != null)
+            {
+                MealGroup = new MealGroup(pMealDb.MEAL_GROUPS);
+            }
+        }
+
         public Meal()
         {
             AddOns = new HashSet<IMeal>();
