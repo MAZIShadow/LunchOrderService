@@ -30,7 +30,7 @@ namespace LunchOrder.Repositories
         {
             using (dbmealsEntities context = new dbmealsEntities())
             {
-                List<MEAL_GROUPS> mealGroupsDb = context.MEAL_GROUPS.Where(pMealGroup => pMealGroup.NAME == pMealGroupName).ToList();
+                List<MEAL_GROUPS> mealGroupsDb = context.MEAL_GROUPS.Where(pMealGroup => pMealGroup.MEAL_GROUPS2 != null && pMealGroup.MEAL_GROUPS2.NAME == pMealGroupName).ToList();
                 List<IMealGroup> mealGroups = new List<IMealGroup>();
 
                 foreach (MEAL_GROUPS mealGroupDb in mealGroupsDb)

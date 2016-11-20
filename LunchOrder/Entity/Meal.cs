@@ -49,7 +49,17 @@ namespace LunchOrder.Entity
 
         public override string ToString()
         {
-            return string.Format("{0} [{1,00} zł]", MealName, MealPrice);
+            return $"{MealName} [{MealPrice,0} zł]";
+        }
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.MealName.GetHashCode() ^ this.MealPrice.GetHashCode();
         }
     }
 }

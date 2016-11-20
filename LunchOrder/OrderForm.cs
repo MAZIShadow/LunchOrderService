@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using LunchOrder.Interfaces;
+using LunchOrder.Repositories;
+using LunchOrder.Windows;
 
 namespace LunchOrder
 {
@@ -22,10 +24,15 @@ namespace LunchOrder
             ReloadTree();
         }
 
-        private void LoadMeals(long pGroupId)
+        private void LoadMeals(string pGroupName)
         {
             uiLstMeals.Items.Clear();
-            uiLstMeals.Items.AddRange(_logic.GetMealsByGroupId(pGroupId).ToArray());
+            uiLstMeals.Items.AddRange(_logic.GetMealsByGroupName(pGroupName).ToArray());
+        }
+
+        private bool GroupHasSubGroups(IMealGroup pMealGroup)
+        {
+            return _logic.GroupHasSubGroups(pMealGroup);
         }
 
         private void LoadGroups()
@@ -44,6 +51,7 @@ namespace LunchOrder
             uiTreeView.Nodes.Clear();
             uiTreeView.Nodes.Add(_logic.ReloadTreeView());
             uiTreeView.ExpandAll();
+            uiTreeView.SelectedNode = uiTreeView.Nodes[0];
             ShowPrice();
         }
 
@@ -56,7 +64,7 @@ namespace LunchOrder
                 return;
             }
 
-            _logic.AddMeal(new Entity.Meal(selectedMeal.MealName, selectedMeal.MealPrice));
+            _logic.AddMeal(new Entity.Meal(selectedMeal.MealName, selectedMeal.MealPrice, selectedMeal.MealGroup));
             ReloadTree();
         }
 
@@ -84,34 +92,81 @@ namespace LunchOrder
 
         private void uiBtnOrderDinner_Click(object sender, EventArgs e)
         {
-            //todo: zlozyc zamowienie
+            using (RequestOrderForm requestOrderForm = new RequestOrderForm(_logic.Order)
+            {
+                StartPosition = FormStartPosition.CenterParent
+            })
+            {
+                if (requestOrderForm.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+
+                _logic.ResetOrder();
+                ReloadTree();
+            }
         }
 
         private void uiCbGroups_SelectedIndexChanged(object sender, EventArgs e)
         {
             IMealGroup mealGroup = uiCbGroups.SelectedItem as IMealGroup;
 
-            if (mealGroup == null || !mealGroup.Id.HasValue)
+            if (mealGroup == null)
             {
                 return;
             }
 
-            LoadMeals(mealGroup.Id.Value);
+            LoadMeals(mealGroup.GroupName);
         }
 
         private void uiBtnAddOns_Click(object sender, EventArgs e)
         {
-            using (AddOnForm addOnForm = new AddOnForm())
+            var node = uiTreeView.SelectedNode;
+
+            if (node == null)
             {
-                if (addOnForm.ShowDialog() != DialogResult.OK)
-                {
-                    return;
-                }
-
-                //todo: dodać dodatki
-
-                ReloadTree();
+                return;
             }
+
+            var meal = node.Tag as IMeal;
+
+            if (meal == null || meal.MealGroup == null)
+            {
+                return;
+            }
+            try
+            {
+                using (var addOnForm = new AddOnForm(meal.MealGroup)
+                {
+                    StartPosition = FormStartPosition.CenterParent
+                })
+                {
+                    if (addOnForm.ShowDialog() != DialogResult.OK)
+                    {
+                        return;
+                    }
+
+                    meal.AddOns = addOnForm.SelectedAddOns;
+                    ReloadTree();
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void uiTreeView_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            var node = uiTreeView.SelectedNode;
+
+            if (node == null)
+            {
+                return;
+            }
+
+            var meal = node.Tag as IMeal;
+            uiBtnAddOns.Enabled = meal != null && GroupHasSubGroups(meal.MealGroup);
         }
     }
 }

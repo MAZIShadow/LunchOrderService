@@ -9,12 +9,12 @@ namespace LunchOrder.Repositories
 {
     public class MealRepository
     {
-        public List<IMeal> FindAllMealByGroupId(long pGroupId)
+        public List<IMeal> FindAllMealByGroupName(string pGroupName)
         {
             using (dbmealsEntities context = new dbmealsEntities())
             {
-                List<MEAL> mealsDb = context.MEALS.Where(pMeal => pMeal.FK_MEAL_GROUP == pGroupId).ToList();
                 List<IMeal> meals = new List<IMeal>();
+                List<MEAL> mealsDb = context.MEALS.Where(pMeal => pMeal.MEAL_GROUPS != null && pMeal.MEAL_GROUPS.NAME == pGroupName).ToList();
 
                 foreach(MEAL mealDb in mealsDb)
                 {

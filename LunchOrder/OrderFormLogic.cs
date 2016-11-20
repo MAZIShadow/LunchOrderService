@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using LunchOrder.Interfaces;
 using LunchOrder.Repositories;
 
 namespace LunchOrder
 {
-    class OrderFormLogic
+    internal class OrderFormLogic
     {
-        private Entity.Order _order;
-        private MealGroupRepository _mealGroupRepository;
-        private MealRepository _mealRepository;
+        public Entity.Order Order { get; private set; }
+        private readonly MealGroupRepository _mealGroupRepository;
+        private readonly MealRepository _mealRepository;
 
         public OrderFormLogic()
         {
@@ -21,22 +22,22 @@ namespace LunchOrder
 
         public void ResetOrder()
         {
-            _order = new Entity.Order();
+            Order = new Entity.Order();
         }
 
         public void AddMeal(IMeal pMeal)
         {
-            _order.AddMeal(pMeal);
+            Order.AddMeal(pMeal);
         }
 
         public void RemoveMeal(IMeal pMeal)
         {
-            _order.DeleteMeal(pMeal);
+            Order.DeleteMeal(pMeal);
         }
 
         public decimal OrderPrice()
         {
-            return _order.CalculatePrice();
+            return Order.CalculatePrice();
         }
 
         public List<IMealGroup> GetMainGroups()
@@ -44,30 +45,36 @@ namespace LunchOrder
             return _mealGroupRepository.FindAllMainMealGroups();
         }
 
-        public List<IMeal> GetMealsByGroupId(long pId)
+        public List<IMeal> GetMealsByGroupName(string pGroupName)
         {
-            return _mealRepository.FindAllMealByGroupId(pId);
+            return _mealRepository.FindAllMealByGroupName(pGroupName);
         }
 
         public TreeNode ReloadTreeView()
         {
-            TreeNode root = new TreeNode("Zamówienie");
+            var root = new TreeNode("Zamówienie") {Tag = Order };
 
-            foreach (IMeal meal in _order.Meals)
+            foreach (var meal in Order.Meals)
             {
-                TreeNode mealNode = new TreeNode(string.Format("{0} ({1} zł)", meal.MealName, meal.MealPrice));
-                mealNode.Tag = meal;
+                var mealNode = new TreeNode($"{meal.MealName} ({meal.MealPrice} zł)") {Tag = meal};
                 root.Nodes.Add(mealNode);
 
-                foreach (IMeal mealAddOn in meal.AddOns)
+                foreach (var mealAddOn in meal.AddOns)
                 {
-                    TreeNode mealAddOnNode = new TreeNode(string.Format("{0} ({1} zł)", mealAddOn.MealName, mealAddOn.MealPrice));
-                    mealAddOnNode.Tag = mealAddOn;
+                    var mealAddOnNode = new TreeNode($"{mealAddOn.MealName} ({mealAddOn.MealPrice} zł)")
+                    {
+                        Tag = mealAddOn
+                    };
                     mealNode.Nodes.Add(mealAddOnNode);
                 }
             }
 
             return root;
+        }
+
+        public bool GroupHasSubGroups(IMealGroup pMealGroup)
+        {
+            return pMealGroup != null && _mealGroupRepository.FindSubGroupByMainGroupName(pMealGroup.GroupName).Any();
         }
     }
 }

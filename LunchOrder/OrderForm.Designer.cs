@@ -33,6 +33,7 @@
             this.uiCbGroups = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.uiBtnAddOns = new System.Windows.Forms.Button();
             this.uiBtnCancelOrder = new System.Windows.Forms.Button();
             this.uiLblPrice = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,7 +41,6 @@
             this.uiTreeView = new System.Windows.Forms.TreeView();
             this.uiBtnAddMeal = new System.Windows.Forms.Button();
             this.uiBtnRemoveMeal = new System.Windows.Forms.Button();
-            this.uiBtnAddOns = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -104,6 +104,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Zamówienie";
             // 
+            // uiBtnAddOns
+            // 
+            this.uiBtnAddOns.Location = new System.Drawing.Point(6, 355);
+            this.uiBtnAddOns.Name = "uiBtnAddOns";
+            this.uiBtnAddOns.Size = new System.Drawing.Size(103, 34);
+            this.uiBtnAddOns.TabIndex = 4;
+            this.uiBtnAddOns.Text = "Dodatki";
+            this.uiBtnAddOns.UseVisualStyleBackColor = true;
+            this.uiBtnAddOns.Click += new System.EventHandler(this.uiBtnAddOns_Click);
+            // 
             // uiBtnCancelOrder
             // 
             this.uiBtnCancelOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -149,10 +159,12 @@
             // uiTreeView
             // 
             this.uiTreeView.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.uiTreeView.HideSelection = false;
             this.uiTreeView.Location = new System.Drawing.Point(6, 19);
             this.uiTreeView.Name = "uiTreeView";
             this.uiTreeView.Size = new System.Drawing.Size(431, 330);
             this.uiTreeView.TabIndex = 0;
+            this.uiTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.uiTreeView_AfterSelect);
             // 
             // uiBtnAddMeal
             // 
@@ -173,16 +185,6 @@
             this.uiBtnRemoveMeal.Text = "<<";
             this.uiBtnRemoveMeal.UseVisualStyleBackColor = true;
             this.uiBtnRemoveMeal.Click += new System.EventHandler(this.uiBtnRemoveMeal_Click);
-            // 
-            // uiBtnAddOns
-            // 
-            this.uiBtnAddOns.Location = new System.Drawing.Point(6, 355);
-            this.uiBtnAddOns.Name = "uiBtnAddOns";
-            this.uiBtnAddOns.Size = new System.Drawing.Size(103, 34);
-            this.uiBtnAddOns.TabIndex = 4;
-            this.uiBtnAddOns.Text = "Dodatki";
-            this.uiBtnAddOns.UseVisualStyleBackColor = true;
-            this.uiBtnAddOns.Click += new System.EventHandler(this.uiBtnAddOns_Click);
             // 
             // OrderForm
             // 

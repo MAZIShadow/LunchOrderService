@@ -7,14 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LunchOrder.Entity;
 
 namespace LunchOrder
 {
-    public partial class AddOnForm : Form
+    public partial class RequestOrderForm : Form
     {
-        public AddOnForm()
+        private RequestOrderForm()
         {
             InitializeComponent();
+        }
+
+        public RequestOrderForm(Order logicOrder) : this()
+        {
         }
 
         private void uiBtnCancel_Click(object sender, EventArgs e)
