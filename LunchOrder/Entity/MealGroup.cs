@@ -8,14 +8,14 @@ namespace LunchOrder.Entity
 {
     public class MealGroup : IMealGroup
     {
-        public MealGroup(MEAL_GROUPS pMealGroups)
+        public MealGroup(MEAL_GROUPS pMealGroupsDb)
         {
-            Id = pMealGroups.ID <= 0 ? (long?)null : pMealGroups.ID;
-            GroupName = pMealGroups.NAME;
+            Id = pMealGroupsDb.ID <= 0 ? (long?)null : pMealGroupsDb.ID;
+            GroupName = pMealGroupsDb.NAME;
             
-            if (pMealGroups.MEAL_GROUPS2 != null)
+            if (pMealGroupsDb.MEAL_GROUPS2 != null)
             {
-                ParentMealGroup = new MealGroup(pMealGroups.MEAL_GROUPS2);
+                ParentMealGroup = new MealGroup(pMealGroupsDb.MEAL_GROUPS2);
             }
         }
 

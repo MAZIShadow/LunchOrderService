@@ -23,6 +23,7 @@ namespace LunchOrder
         public long ID { get; set; }
         public System.DateTime ORDER_DATE { get; set; }
         public string DELIVERY_EMAIL { get; set; }
+        public double PRICE { get; set; }
         public string COMMENT { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

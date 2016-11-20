@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LunchOrder.DBContext.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\dbmeals.sqlite&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="LunchOrder.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\dbmeals.sqlite&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="MEAL_GROUPS">
           <Key>
             <PropertyRef Name="ID" />
@@ -39,6 +39,7 @@
           <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ORDER_DATE" Type="datetime" Nullable="false" />
           <Property Name="DELIVERY_EMAIL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PRICE" Type="real" Nullable="false" />
           <Property Name="COMMENT" Type="varchar" MaxLength="250" />
         </EntityType>
         <Association Name="FK_MEAL_GROUPS_0_0">
@@ -89,7 +90,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LunchOrderDBContextStoreContainer">
+        <EntityContainer Name="LunchOrderStoreContainer">
           <EntitySet Name="MEAL_GROUPS" EntityType="Self.MEAL_GROUPS" store:Type="Tables" />
           <EntitySet Name="MEALS" EntityType="Self.MEALS" store:Type="Tables" />
           <EntitySet Name="ORDER_ITEMS" EntityType="Self.ORDER_ITEMS" store:Type="Tables" />
@@ -115,7 +116,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="LunchOrder.DBContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="LunchOrder" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="MEAL_GROUPS">
           <Key>
             <PropertyRef Name="ID" />
@@ -157,6 +158,7 @@
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ORDER_DATE" Type="DateTime" Nullable="false" />
           <Property Name="DELIVERY_EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRICE" Type="Double" Nullable="false" />
           <Property Name="COMMENT" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ORDER_ITEMS" Relationship="Self.FK_ORDER_ITEMS_0_0" FromRole="ORDERS" ToRole="ORDER_ITEMS" />
         </EntityType>
@@ -235,9 +237,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LunchOrderDBContextStoreContainer" CdmEntityContainer="dbmealsEntities">
+        <EntityContainerMapping StorageEntityContainer="LunchOrderStoreContainer" CdmEntityContainer="dbmealsEntities">
           <EntitySetMapping Name="MEAL_GROUPS">
-            <EntityTypeMapping TypeName="LunchOrder.DBContext.MEAL_GROUPS">
+            <EntityTypeMapping TypeName="LunchOrder.MEAL_GROUPS">
               <MappingFragment StoreEntitySet="MEAL_GROUPS">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
@@ -246,7 +248,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MEALS">
-            <EntityTypeMapping TypeName="LunchOrder.DBContext.MEAL">
+            <EntityTypeMapping TypeName="LunchOrder.MEAL">
               <MappingFragment StoreEntitySet="MEALS">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
@@ -256,7 +258,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ORDER_ITEMS">
-            <EntityTypeMapping TypeName="LunchOrder.DBContext.ORDER_ITEMS">
+            <EntityTypeMapping TypeName="LunchOrder.ORDER_ITEMS">
               <MappingFragment StoreEntitySet="ORDER_ITEMS">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
@@ -267,11 +269,12 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ORDERS">
-            <EntityTypeMapping TypeName="LunchOrder.DBContext.ORDER">
+            <EntityTypeMapping TypeName="LunchOrder.ORDER">
               <MappingFragment StoreEntitySet="ORDERS">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ORDER_DATE" ColumnName="ORDER_DATE" />
                 <ScalarProperty Name="DELIVERY_EMAIL" ColumnName="DELIVERY_EMAIL" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
                 <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
               </MappingFragment>
             </EntityTypeMapping>

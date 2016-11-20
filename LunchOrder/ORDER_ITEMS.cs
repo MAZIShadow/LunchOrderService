@@ -25,6 +25,7 @@ namespace LunchOrder
         public double PRICE { get; set; }
         public Nullable<long> FK_ORDER_ITEMS { get; set; }
         public long FK_ORDERS { get; set; }
+    
         public virtual ORDER ORDER { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORDER_ITEMS> ORDER_ITEMS1 { get; set; }

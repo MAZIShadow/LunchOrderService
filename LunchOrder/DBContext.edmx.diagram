@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="dafaddbd0a36408d985812cd8ecd2e75" Name="Diagram1">
-        <EntityTypeShape EntityType="LunchOrder.DBContext.MEAL_GROUPS" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LunchOrder.DBContext.MEAL" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LunchOrder.DBContext.ORDER_ITEMS" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="LunchOrder.DBContext.ORDER" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <AssociationConnector Association="LunchOrder.DBContext.FK_MEAL_GROUPS_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="LunchOrder.DBContext.FK_MEALS_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="LunchOrder.DBContext.FK_ORDER_ITEMS_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="LunchOrder.DBContext.FK_ORDER_ITEMS_1_0" ManuallyRouted="false" />
+      <Diagram DiagramId="f90cde1f338d4047a04fee14c0c9be20" Name="Diagram1">
+        <EntityTypeShape EntityType="LunchOrder.MEAL_GROUPS" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LunchOrder.MEAL" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LunchOrder.ORDER_ITEMS" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="LunchOrder.ORDER" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="LunchOrder.FK_MEAL_GROUPS_0_0" ManuallyRouted="false" />
+        <AssociationConnector Association="LunchOrder.FK_MEALS_0_0" ManuallyRouted="false" />
+        <AssociationConnector Association="LunchOrder.FK_ORDER_ITEMS_0_0" ManuallyRouted="false" />
+        <AssociationConnector Association="LunchOrder.FK_ORDER_ITEMS_1_0" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

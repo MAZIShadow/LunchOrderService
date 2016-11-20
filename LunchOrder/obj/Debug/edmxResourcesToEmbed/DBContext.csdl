@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="LunchOrder.DBContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="LunchOrder" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="MEAL_GROUPS">
     <Key>
       <PropertyRef Name="ID" />
@@ -41,6 +41,7 @@
     <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ORDER_DATE" Type="DateTime" Nullable="false" />
     <Property Name="DELIVERY_EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PRICE" Type="Double" Nullable="false" />
     <Property Name="COMMENT" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="ORDER_ITEMS" Relationship="Self.FK_ORDER_ITEMS_0_0" FromRole="ORDERS" ToRole="ORDER_ITEMS" />
   </EntityType>

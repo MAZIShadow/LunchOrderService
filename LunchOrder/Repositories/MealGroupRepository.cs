@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using LunchOrder.Interfaces;
 using LunchOrder.Entity;
 
@@ -14,10 +11,10 @@ namespace LunchOrder.Repositories
         {
             using (dbmealsEntities context = new dbmealsEntities())
             {
-                List<MEAL_GROUPS> mealGroupsDb = context.MEAL_GROUPS.Where(pMealGroup => pMealGroup.MEAL_GROUPS2 == null).ToList();
-                List<IMealGroup> mealGroups = new List<IMealGroup>();
+                var mealGroupsDb = context.MEAL_GROUPS.Where(pMealGroup => pMealGroup.MEAL_GROUPS2 == null).ToList();
+                var mealGroups = new List<IMealGroup>();
 
-                foreach(MEAL_GROUPS mealGroupDb in mealGroupsDb)
+                foreach(var mealGroupDb in mealGroupsDb)
                 {
                     mealGroups.Add(new MealGroup(mealGroupDb));
                 }
@@ -28,12 +25,12 @@ namespace LunchOrder.Repositories
 
         public List<IMealGroup> FindSubGroupByMainGroupName(string pMealGroupName)
         {
-            using (dbmealsEntities context = new dbmealsEntities())
+            using (var context = new dbmealsEntities())
             {
-                List<MEAL_GROUPS> mealGroupsDb = context.MEAL_GROUPS.Where(pMealGroup => pMealGroup.MEAL_GROUPS2 != null && pMealGroup.MEAL_GROUPS2.NAME == pMealGroupName).ToList();
-                List<IMealGroup> mealGroups = new List<IMealGroup>();
+                var mealGroupsDb = context.MEAL_GROUPS.Where(pMealGroup => pMealGroup.MEAL_GROUPS2 != null && pMealGroup.MEAL_GROUPS2.NAME == pMealGroupName).ToList();
+                var mealGroups = new List<IMealGroup>();
 
-                foreach (MEAL_GROUPS mealGroupDb in mealGroupsDb)
+                foreach (var mealGroupDb in mealGroupsDb)
                 {
                     mealGroups.Add(new MealGroup(mealGroupDb));
                 }
@@ -44,9 +41,9 @@ namespace LunchOrder.Repositories
 
         public IMealGroup FindGroupById(long pId)
         {
-            using (dbmealsEntities context = new dbmealsEntities())
+            using (var context = new dbmealsEntities())
             {
-                MEAL_GROUPS mealGroupDb = context.MEAL_GROUPS.FirstOrDefault(pMealGroup => pMealGroup.ID == pId);
+                var mealGroupDb = context.MEAL_GROUPS.FirstOrDefault(pMealGroup => pMealGroup.ID == pId);
 
                 return mealGroupDb == null ? null : new MealGroup(mealGroupDb);
             }

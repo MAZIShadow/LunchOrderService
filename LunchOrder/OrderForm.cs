@@ -86,6 +86,18 @@ namespace LunchOrder
 
         private void uiBtnCancelOrder_Click(object sender, EventArgs e)
         {
+            if (!_logic.IsOrderHasMeals())
+            {
+                return;
+            }
+
+            if (
+                MessageBox.Show("Czy jesteś pewny anulowania zamowienia?", "Pytanie", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) != DialogResult.Yes)
+            {
+                return;
+            }
+
             _logic.ResetOrder();
             ReloadTree();
         }

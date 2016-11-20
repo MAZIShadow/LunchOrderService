@@ -13,6 +13,24 @@ namespace LunchOrder.Entity
             Meals = new List<IMeal>();
         }
 
+        public Order(ORDER pOrderDb) : this()
+        {
+            Id = pOrderDb.ID <= 0 ? (long?)null : pOrderDb.ID;
+            OrderDate = pOrderDb.ORDER_DATE;
+            Comment = pOrderDb.COMMENT;
+            EmailDelivery = pOrderDb.DELIVERY_EMAIL;
+            OrderPrice = (decimal) pOrderDb.PRICE;
+            
+
+
+            //GroupName = pOrderDb.NAME;
+
+            //if (pOrderDb.MEAL_GROUPS2 != null)
+            //{
+            //    ParentMealGroup = new MealGroup(pOrderDb.MEAL_GROUPS2);
+            //}
+        }
+
         public long? Id { get; set; }
         public DateTime OrderDate { get; set; }
         public List<IMeal> Meals { get; set; }

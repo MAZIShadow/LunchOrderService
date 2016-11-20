@@ -9,7 +9,7 @@ namespace LunchOrder
 {
     internal class OrderFormLogic
     {
-        public Entity.Order Order { get; private set; }
+        public IOrder Order { get; private set; }
         private readonly MealGroupRepository _mealGroupRepository;
         private readonly MealRepository _mealRepository;
 
@@ -18,6 +18,11 @@ namespace LunchOrder
             _mealGroupRepository = new MealGroupRepository();
             _mealRepository = new MealRepository();
             ResetOrder();
+        }
+
+        public bool IsOrderHasMeals()
+        {
+            return Order.Meals.Any();
         }
 
         public void ResetOrder()

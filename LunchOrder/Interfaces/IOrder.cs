@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LunchOrder.Interfaces
 {
-    interface IOrder
+    public interface IOrder
     {
         long? Id { get; set; }
         DateTime OrderDate { get; set; }

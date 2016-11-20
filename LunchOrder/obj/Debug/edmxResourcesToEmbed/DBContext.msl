@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="LunchOrderDBContextStoreContainer" CdmEntityContainer="dbmealsEntities">
+  <EntityContainerMapping StorageEntityContainer="LunchOrderStoreContainer" CdmEntityContainer="dbmealsEntities">
     <EntitySetMapping Name="MEAL_GROUPS">
-      <EntityTypeMapping TypeName="LunchOrder.DBContext.MEAL_GROUPS">
+      <EntityTypeMapping TypeName="LunchOrder.MEAL_GROUPS">
         <MappingFragment StoreEntitySet="MEAL_GROUPS">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="NAME" ColumnName="NAME" />
@@ -11,7 +11,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="MEALS">
-      <EntityTypeMapping TypeName="LunchOrder.DBContext.MEAL">
+      <EntityTypeMapping TypeName="LunchOrder.MEAL">
         <MappingFragment StoreEntitySet="MEALS">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="NAME" ColumnName="NAME" />
@@ -21,7 +21,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ORDER_ITEMS">
-      <EntityTypeMapping TypeName="LunchOrder.DBContext.ORDER_ITEMS">
+      <EntityTypeMapping TypeName="LunchOrder.ORDER_ITEMS">
         <MappingFragment StoreEntitySet="ORDER_ITEMS">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="NAME" ColumnName="NAME" />
@@ -32,11 +32,12 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ORDERS">
-      <EntityTypeMapping TypeName="LunchOrder.DBContext.ORDER">
+      <EntityTypeMapping TypeName="LunchOrder.ORDER">
         <MappingFragment StoreEntitySet="ORDERS">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="ORDER_DATE" ColumnName="ORDER_DATE" />
           <ScalarProperty Name="DELIVERY_EMAIL" ColumnName="DELIVERY_EMAIL" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
           <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
         </MappingFragment>
       </EntityTypeMapping>

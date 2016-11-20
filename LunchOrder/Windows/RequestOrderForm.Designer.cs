@@ -1,4 +1,4 @@
-﻿namespace LunchOrder
+﻿namespace LunchOrder.Windows
 {
     partial class RequestOrderForm
     {
@@ -62,7 +62,7 @@
             this.uiTxtComments.Multiline = true;
             this.uiTxtComments.Name = "uiTxtComments";
             this.uiTxtComments.Size = new System.Drawing.Size(552, 164);
-            this.uiTxtComments.TabIndex = 5;
+            this.uiTxtComments.TabIndex = 6;
             // 
             // uiTxtEmail
             // 
@@ -70,7 +70,8 @@
             this.uiTxtEmail.Location = new System.Drawing.Point(161, 37);
             this.uiTxtEmail.Name = "uiTxtEmail";
             this.uiTxtEmail.Size = new System.Drawing.Size(408, 29);
-            this.uiTxtEmail.TabIndex = 6;
+            this.uiTxtEmail.TabIndex = 5;
+            this.uiTxtEmail.KeyUp += new System.Windows.Forms.KeyEventHandler(this.uiTxtEmail_KeyUp);
             // 
             // uiBtnOk
             // 
