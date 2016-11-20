@@ -14,9 +14,9 @@ namespace LunchOrder.Repositories
                 var meals = new List<IMeal>();
                 var mealsDb = context.MEALS.Where(pMeal => pMeal.MEAL_GROUPS != null && pMeal.MEAL_GROUPS.NAME == pGroupName).ToList();
 
-                foreach(var mealDb in mealsDb)
+                foreach (var mealDb in mealsDb)
                 {
-                    meals.Add(new Meal(mealDb));
+                    meals.Add(Convertes.ConverterEntityDbToObject.ConvertMealDbToMeal(mealDb));
                 }
 
                 return meals;
@@ -29,7 +29,7 @@ namespace LunchOrder.Repositories
             {
                 var mealDb = context.MEALS.FirstOrDefault(pMeal => pMeal.ID == pId);
 
-                return mealDb == null ? null : new Meal(mealDb);
+                return mealDb == null ? null : Convertes.ConverterEntityDbToObject.ConvertMealDbToMeal(mealDb);
             }
         }
     }

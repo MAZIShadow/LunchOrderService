@@ -18,3 +18,5 @@ C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrde
 C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\bin\Debug\dbmeals.sqlite
 C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\obj\Debug\LunchOrder.Windows.AddOnForm.resources
 C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\obj\Debug\LunchOrder.Windows.RequestOrderForm.resources
+C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\obj\Debug\LunchOrder.Windows.HistoryOrderForm.resources
+C:\Users\MAZI_\Documents\Visual Studio 2015\Projects\LunchOrderService\LunchOrder\obj\Debug\LunchOrder.Windows.HistoryOrderDetailsForm.resources

@@ -104,6 +104,12 @@ namespace LunchOrder
 
         private void uiBtnOrderDinner_Click(object sender, EventArgs e)
         {
+            if (!_logic.IsOrderHasMeals())
+            {
+                MessageBox.Show("Najpierw wprowadź zamówienie", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             using (RequestOrderForm requestOrderForm = new RequestOrderForm(_logic.Order)
             {
                 StartPosition = FormStartPosition.CenterParent
@@ -179,6 +185,38 @@ namespace LunchOrder
 
             var meal = node.Tag as IMeal;
             uiBtnAddOns.Enabled = meal != null && GroupHasSubGroups(meal.MealGroup);
+        }
+
+        private void uiTSMIAbout_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Autor: Daniel \"MAZI_\" Mazur", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void uiTSMIHistory_Click(object sender, EventArgs e)
+        {
+            using (HistoryOrderForm historyOrderForm = new HistoryOrderForm
+            {
+                StartPosition = FormStartPosition.CenterParent
+            })
+            {
+                historyOrderForm.ShowDialog();
+            }
+            
+        }
+
+        private void uiTSMIExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void OrderForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Czy chcesz zakończyć działanie aplikacji?", "Info", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) != DialogResult.Yes)
+            {
+                e.Cancel = true;
+                return;
+            }
         }
     }
 }

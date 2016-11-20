@@ -13,6 +13,7 @@ namespace LunchOrder.Windows
         {
             InitializeComponent();
             uiBtnOk.Enabled = false;
+            uiTxtComments.MaxLength = 500;
         }
 
         public RequestOrderForm(IOrder pOrder) : this()

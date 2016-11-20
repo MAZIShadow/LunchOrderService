@@ -57,24 +57,34 @@ namespace LunchOrder
 
         public TreeNode ReloadTreeView()
         {
-            var root = new TreeNode("Zamówienie") {Tag = Order };
+            var root = new TreeNode("Zamówienie") { Tag = Order };
 
             foreach (var meal in Order.Meals)
             {
-                var mealNode = new TreeNode($"{meal.MealName} ({meal.MealPrice} zł)") {Tag = meal};
-                root.Nodes.Add(mealNode);
-
-                foreach (var mealAddOn in meal.AddOns)
-                {
-                    var mealAddOnNode = new TreeNode($"{mealAddOn.MealName} ({mealAddOn.MealPrice} zł)")
-                    {
-                        Tag = mealAddOn
-                    };
-                    mealNode.Nodes.Add(mealAddOnNode);
-                }
+                root.Nodes.Add(AddMeals(meal));
             }
 
             return root;
+        }
+
+        private static TreeNode AddMeals(IMeal pMeal)
+        {
+            var mealNode = new TreeNode($"{pMeal.MealName} ({pMeal.MealPrice} zł)")
+            {
+                Tag = pMeal,
+            };
+
+            if (pMeal.AddOns == null || !pMeal.AddOns.Any())
+            {
+                return mealNode;
+            }
+
+            foreach (var mealAddOn in pMeal.AddOns)
+            {
+                mealNode.Nodes.Add(AddMeals(mealAddOn));
+            }
+
+            return mealNode;
         }
 
         public bool GroupHasSubGroups(IMealGroup pMealGroup)

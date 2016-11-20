@@ -12,10 +12,18 @@ namespace LunchOrder.Repositories
     {
         public List<IOrder> FindAllOrdersByDateTime(DateTime pDateTime)
         {
+            return FindAllOrdersByDateTimes(pDateTime, pDateTime);
+        }
+
+        public List<IOrder> FindAllOrdersByDateTimes(DateTime pFromDateTime, DateTime pToDateTime)
+        {
             using (var context = new dbmealsEntities())
             {
+                var from = new DateTime(pFromDateTime.Year, pFromDateTime.Month, pFromDateTime.Day);
+                var to = new DateTime(pToDateTime.Year, pToDateTime.Month, pToDateTime.Day).AddDays(1).AddSeconds(-1);
                 var orders = new List<IOrder>();
-                var ordersDb = context.ORDERS.Where(pOrders => pOrders.ORDER_DATE == pDateTime).ToList();
+                var ordersDb =
+                    context.ORDERS.Where(pOrders => pOrders.ORDER_DATE >= from && pOrders.ORDER_DATE <= to).ToList();
 
                 foreach (var orderDb in ordersDb)
                 {
@@ -25,26 +33,7 @@ namespace LunchOrder.Repositories
                 return orders;
             }
         }
-
-        private static ORDER_ITEMS ConvertMealToOrderItem(IMeal pMeal)
-        {
-            var orderItem = new ORDER_ITEMS
-            {
-                NAME = pMeal.MealName,
-                PRICE = (double) pMeal.MealPrice
-            };
-
-            if (pMeal.AddOns != null && pMeal.AddOns.Any())
-            {
-                foreach (var mealAddOn in pMeal.AddOns)
-                {
-                    orderItem.ORDER_ITEMS1.Add(ConvertMealToOrderItem(mealAddOn));
-                }
-            }
-
-            return orderItem;
-        }
-
+        
         public bool SaveOrder(IOrder pOrder)
         {
             if (pOrder == null)
@@ -65,8 +54,8 @@ namespace LunchOrder.Repositories
 
                     foreach (var pOrderMeal in pOrder.Meals)
                     {
-                        order.ORDER_ITEMS.Add(ConvertMealToOrderItem(pOrderMeal));
-                        order.PRICE += (double) pOrderMeal.CalculateAddOnsPrice();
+                        order.ORDER_ITEMS.Add(Convertes.ConverterObjectToEntityDb.ConvertMealToOrderItemDb(pOrderMeal));
+                        order.PRICE += (double) (pOrderMeal.CalculateAddOnsPrice() + pOrderMeal.MealPrice);
                     }
 
                     context.ORDERS.Add(order);
