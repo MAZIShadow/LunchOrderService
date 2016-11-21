@@ -122,6 +122,8 @@ namespace LunchOrder
 
                 _logic.ResetOrder();
                 ReloadTree();
+
+                MessageBox.Show("Zamówienie zostało przyjęte!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

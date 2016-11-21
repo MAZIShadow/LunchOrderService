@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using LunchOrder.Entity;
 using LunchOrder.Interfaces;
 using LunchOrder.Repositories;
@@ -59,11 +60,12 @@ namespace LunchOrder.Windows
                 return false;
             }
 
-            var emailRequestOrder = new EmailRequestOrder();
+            var emailRequestOrder = new EmailRequestOrder(_order);
 
             if (!emailRequestOrder.SendEmail(_order.EmailDelivery))
             {
-                //todo: Zalogować blad wysylania email
+                MessageBox.Show("Bład podczas wysyłania email'a z zamówieniem.", "Uwaga", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
             }
 
             return true;
