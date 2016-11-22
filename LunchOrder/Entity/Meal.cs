@@ -42,12 +42,38 @@ namespace LunchOrder.Entity
 
         public override bool Equals(object obj)
         {
-            return base.Equals(obj);
+            if (this == obj)
+            {
+                return true;
+            }
+
+            Meal meal = obj as Meal;
+
+            if (meal == null)
+            {
+                return false;
+            }
+
+            if (this.MealGroup == null)
+            {
+                if (meal.MealGroup != null)
+                {
+                    return false;
+                }
+            }
+            else if (!this.MealGroup.Equals(meal.MealGroup))
+            {
+                return false;
+            }
+
+            return meal.MealName == this.MealName && meal.MealPrice == this.MealPrice;
         }
 
         public override int GetHashCode()
         {
-            return this.MealName.GetHashCode() ^ this.MealPrice.GetHashCode();
+            var groupName = this.MealGroup == null ? string.Empty : this.MealGroup.GroupName;
+
+            return groupName.GetHashCode() ^ this.MealName.GetHashCode() ^ this.MealPrice.GetHashCode();
         }
     }
 }

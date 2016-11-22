@@ -43,11 +43,11 @@
             this.uiBtnRemoveMeal = new System.Windows.Forms.Button();
             this.uiMenu = new System.Windows.Forms.MenuStrip();
             this.plikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiTSMIExit = new System.Windows.Forms.ToolStripMenuItem();
             this.historiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiTSMIHistory = new System.Windows.Forms.ToolStripMenuItem();
             this.pomocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiTSMIAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.uiTSMIHistory = new System.Windows.Forms.ToolStripMenuItem();
-            this.uiTSMIExit = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.uiMenu.SuspendLayout();
@@ -214,6 +214,13 @@
             this.plikToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
             this.plikToolStripMenuItem.Text = "Plik";
             // 
+            // uiTSMIExit
+            // 
+            this.uiTSMIExit.Name = "uiTSMIExit";
+            this.uiTSMIExit.Size = new System.Drawing.Size(118, 22);
+            this.uiTSMIExit.Text = "Zakończ";
+            this.uiTSMIExit.Click += new System.EventHandler(this.uiTSMIExit_Click);
+            // 
             // historiaToolStripMenuItem
             // 
             this.historiaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -221,6 +228,13 @@
             this.historiaToolStripMenuItem.Name = "historiaToolStripMenuItem";
             this.historiaToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.historiaToolStripMenuItem.Text = "Historia";
+            // 
+            // uiTSMIHistory
+            // 
+            this.uiTSMIHistory.Name = "uiTSMIHistory";
+            this.uiTSMIHistory.Size = new System.Drawing.Size(172, 22);
+            this.uiTSMIHistory.Text = "Historia zamówień";
+            this.uiTSMIHistory.Click += new System.EventHandler(this.uiTSMIHistory_Click);
             // 
             // pomocToolStripMenuItem
             // 
@@ -233,23 +247,9 @@
             // uiTSMIAbout
             // 
             this.uiTSMIAbout.Name = "uiTSMIAbout";
-            this.uiTSMIAbout.Size = new System.Drawing.Size(152, 22);
+            this.uiTSMIAbout.Size = new System.Drawing.Size(141, 22);
             this.uiTSMIAbout.Text = "O programie";
             this.uiTSMIAbout.Click += new System.EventHandler(this.uiTSMIAbout_Click);
-            // 
-            // uiTSMIHistory
-            // 
-            this.uiTSMIHistory.Name = "uiTSMIHistory";
-            this.uiTSMIHistory.Size = new System.Drawing.Size(172, 22);
-            this.uiTSMIHistory.Text = "Historia zamówień";
-            this.uiTSMIHistory.Click += new System.EventHandler(this.uiTSMIHistory_Click);
-            // 
-            // uiTSMIExit
-            // 
-            this.uiTSMIExit.Name = "uiTSMIExit";
-            this.uiTSMIExit.Size = new System.Drawing.Size(152, 22);
-            this.uiTSMIExit.Text = "Zakończ";
-            this.uiTSMIExit.Click += new System.EventHandler(this.uiTSMIExit_Click);
             // 
             // OrderForm
             // 
@@ -263,7 +263,9 @@
             this.Controls.Add(this.uiMenu);
             this.MainMenuStrip = this.uiMenu;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1055, 695);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1055, 695);
             this.Name = "OrderForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "System Zamówień Posiłków";

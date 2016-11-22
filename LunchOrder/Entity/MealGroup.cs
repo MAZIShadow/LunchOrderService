@@ -24,5 +24,41 @@ namespace LunchOrder.Entity
         {
             return this.GroupName;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (this == obj)
+            {
+                return true;
+            }
+
+            MealGroup mealGroup = obj as MealGroup;
+
+            if (mealGroup == null)
+            {
+                return false;
+            }
+
+            if (this.ParentMealGroup == null)
+            {
+                if (mealGroup.ParentMealGroup != null)
+                {
+                    return false;
+                }
+            }
+            else if (!this.ParentMealGroup.Equals(mealGroup.ParentMealGroup))
+            {
+                return false;
+            }
+
+            return mealGroup.GroupName == this.GroupName;
+        }
+
+        public override int GetHashCode()
+        {
+            int groupHashCode = this.ParentMealGroup == null ? 1 : this.ParentMealGroup.GetHashCode();
+
+            return this.GroupName.GetHashCode() ^ groupHashCode;
+        }
     }
 }

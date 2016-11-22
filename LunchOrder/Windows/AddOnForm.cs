@@ -14,7 +14,6 @@ namespace LunchOrder.Windows
     public partial class AddOnForm : Form
     {
         private readonly AddOnFormLogic _logic;
-
         public HashSet<IMeal> SelectedAddOns { get; private set; }
 
         private AddOnForm()
@@ -68,25 +67,50 @@ namespace LunchOrder.Windows
         {
             uiChkLstAddOns.Items.Clear();
             uiChkLstAddOns.Items.AddRange(_logic.GetSubMealsBySubGroupId(pGroupName).ToArray());
-        }
+            uiChkLstAddOns.ItemCheck -= uiChkLstAddOns_ItemCheck;
 
-        private void SetSelectedAddOns()
-        {
-            HashSet<IMeal> meals = new HashSet<IMeal>();
-
-            foreach (object checkedItem in uiChkLstAddOns.CheckedItems)
+            for (int i = 0; i < uiChkLstAddOns.Items.Count; i++)
             {
-                IMeal meal = checkedItem as IMeal;
+                var meal = uiChkLstAddOns.Items[i] as IMeal;
 
                 if (meal == null)
                 {
                     continue;
                 }
 
-                meals.Add(meal);
+                if (_logic.GetSelectedMeals().Contains(meal))
+                {
+                    uiChkLstAddOns.SetItemChecked(i, true);
+                }
             }
 
-            SelectedAddOns = meals;
+            uiChkLstAddOns.ItemCheck += uiChkLstAddOns_ItemCheck;
+
+        }
+
+        private void SetSelectedAddOns()
+        {
+            SelectedAddOns = _logic.GetSelectedMeals();
+        }
+
+        private void uiChkLstAddOns_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            var meal = uiChkLstAddOns.Items[e.Index] as IMeal;
+
+            if (meal == null)
+            {
+                return;
+            }
+
+            switch (e.NewValue)
+            {
+                case CheckState.Checked:
+                    _logic.AddMeal(meal);
+                    break;
+                case CheckState.Unchecked:
+                    _logic.RemoveMeal(meal);
+                    break;
+            }
         }
     }
 }

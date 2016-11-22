@@ -44,7 +44,7 @@
             this.uiCbGroups.Name = "uiCbGroups";
             this.uiCbGroups.Size = new System.Drawing.Size(408, 32);
             this.uiCbGroups.TabIndex = 3;
-            this.uiCbGroups.SelectedIndexChanged += new System.EventHandler(uiCbGroups_SelectedIndexChanged);
+            this.uiCbGroups.SelectedIndexChanged += new System.EventHandler(this.uiCbGroups_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -64,6 +64,7 @@
             this.uiChkLstAddOns.Name = "uiChkLstAddOns";
             this.uiChkLstAddOns.Size = new System.Drawing.Size(407, 244);
             this.uiChkLstAddOns.TabIndex = 4;
+            this.uiChkLstAddOns.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.uiChkLstAddOns_ItemCheck);
             // 
             // uiBtnOk
             // 
